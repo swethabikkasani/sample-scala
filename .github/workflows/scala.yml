@@ -29,4 +29,11 @@ jobs:
         cache: 'sbt'
     - name: Build and Test
       run: sbt -v +test
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: launchers
+        path: artifacts
+        if-no-files-found: error
+        retention-days: 2
     
