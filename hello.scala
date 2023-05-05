@@ -9,5 +9,4 @@ object helloInteractive {
 
     println("Hi, " + name + "!" + "\nWelcome to the world of Scala")
   }
-
 }
