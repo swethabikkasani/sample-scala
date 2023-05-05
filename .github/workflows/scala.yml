@@ -29,6 +29,12 @@ jobs:
         cache: 'sbt'
     - name: Build and Test
       run: sbt -v +test
+    - name: Install zip
+      uses: montudor/action-zip@v1
+    - name: Zip output
+      run: zip -qq -r scbuild.zip ${{ github.workspace }}/target/
+      working-directory: ${{ github.workspace }}/target/
+     
     - name: Deploy to AWS S3
       uses: qoqa/action-s3-cp@v1.1
       env:
@@ -37,6 +43,6 @@ jobs:
            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
            AWS_REGION: 'us-east-1'
            AWS_S3_PATH: '/Sample/'
-           FILE: '${{ github.workspace }}/target/'
+           FILE: '${{ github.workspace }}/target/scbuild.zip'
 
     
