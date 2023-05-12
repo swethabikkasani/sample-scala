@@ -41,8 +41,7 @@ jobs:
         JF_URL: ${{ secrets.JF_URL }}
         # JFrog Platform access token
         JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
-    - run: |
-         jf --version 
+    - run: | 
          jf rt ping
      
     - name: Deploy to AWS S3
