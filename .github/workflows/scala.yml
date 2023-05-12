@@ -34,6 +34,16 @@ jobs:
     - name: Zip output
       run: zip -qq -r scbuild.zip ${{ github.workspace }}/target/
       working-directory: ${{ github.workspace }}/target/
+      
+    - uses: jfrog/setup-jfrog-cli@v3
+      env:
+        # JFrog platform url (for example: https://acme.jfrog.io) 
+        JF_URL: ${{ secrets.JF_URL }}
+        # JFrog Platform access token
+        JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+    - run: |
+         jf --version 
+         jf rt ping
      
     - name: Deploy to AWS S3
       uses: qoqa/action-s3-cp@v1.1
